@@ -1,3 +1,10 @@
+# 비트코인 GPT 인공지능 AI 업비트 자동매매 시스템 만들기
+- AI API를 이용하여 투자를 자동화 합니다.
+## 관련 링크
+- [수업 자료](https://jocoding.net/bitcoin)
+- [라이브 풀버전 링크](https://youtube.com/live/-7IVgjUw79s?feature=share)
+- 편집본 (업데이트 예정)
+
 ## 로컬 환경 설정
 ```
 pip install -r requirements.txt
@@ -37,7 +44,7 @@ vim .env
 ### 명령어
 - 현재 경로 상세 출력: ls -al
 - 경로 이동: cd 경로
-- vim 에디터로 파일 열기: vim bitcoinAutoTrade.py
+- vim 에디터로 파일 열기: vim autotrade.py
 - vim 에디터 입력: i
 - vim 에디터 저장: :wq!
 ### 실행하기
@@ -64,3 +71,5 @@ kill -9 PID
 ex. kill -9 13586
 ```
 
+## 추후 계획
+- 빗썸, 바이낸스, 코인베이스, OKX, 바이비트도 가능하면 다루겠음
