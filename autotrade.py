@@ -11,7 +11,7 @@ import time
 
 # Setup
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
-upbit = pyupbit.Upbit(os.getenv("UPBIT_ACCESS"), os.getenv("UPBIT_SECRET"))
+upbit = pyupbit.Upbit(os.getenv("UPBIT_ACCESS_KEY"), os.getenv("UPBIT_SECRET_KEY"))
 
 def get_current_status():
     orderbook = pyupbit.get_orderbook(ticker="KRW-BTC")
