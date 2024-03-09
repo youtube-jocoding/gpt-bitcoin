@@ -32,7 +32,6 @@ def get_current_status():
     
 
 def fetch_and_prepare_data():
-    global btc_balance
     # Fetch data
     df_daily = pyupbit.get_ohlcv("KRW-BTC", "day", count=30)
     df_hourly = pyupbit.get_ohlcv("KRW-BTC", interval="minute60", count=24)
@@ -147,6 +146,7 @@ def analyze_data_with_gpt4(data_json):
     - **RSI_14**: The Relative Strength Index measures overbought or oversold conditions on a scale of 0 to 100. Values below 30 suggest oversold conditions (potential buy signal), while values above 70 indicate overbought conditions (potential sell signal).
     - **MACD**: Moving Average Convergence Divergence tracks the relationship between two moving averages of a price. A MACD crossing above its signal line suggests bullish momentum, whereas crossing below indicates bearish momentum.
     - **Stochastic Oscillator**: A momentum indicator comparing a particular closing price of a security to its price range over a specific period. It consists of two lines: %K (fast) and %D (slow). Readings above 80 indicate overbought conditions, while those below 20 suggest oversold conditions.
+    - **Bollinger Bands**: Bollinger Bands are a set of three lines: the middle is a 20-day average price, and the two outer lines adjust based on price volatility. The outer bands widen with more volatility and narrow when less. They help identify when prices might be too high (touching the upper band) or too low (touching the lower band), suggesting potential market moves.
 
     ### Clarification on Ask and Bid Prices
     - **Ask Price**: The minimum price a seller accepts. Use this for buy decisions to determine the cost of acquiring Bitcoin.
@@ -161,6 +161,7 @@ def analyze_data_with_gpt4(data_json):
     ### Considerations
     - **Factor in Transaction Fees**: Upbit charges a transaction fee of 0.05%. Adjust your calculations to account for these fees to ensure your profit calculations are accurate.
     - **Account for Market Slippage**: Especially relevant when large orders are placed. Analyze the orderbook to anticipate the impact of slippage on your transactions.
+    - Remember, the first principle is not to lose money. The second principle: never forget the first principle.
     - Remember, successful investment strategies require balancing aggressive returns with careful risk assessment. Utilize a holistic view of market data, technical indicators, and current status to inform your strategies.
     - Consider setting predefined criteria for what constitutes a profitable strategy and the conditions under which penalties apply to refine the incentives for the analysis engine.
     - This task significantly impacts personal assets, requiring careful and strategic analysis.
@@ -215,7 +216,6 @@ def analyze_data_with_gpt4(data_json):
     """
     try:
         current_status = get_current_status()
-        print(current_status)
         response = client.chat.completions.create(
             model="gpt-4-turbo-preview",
             messages=[
@@ -268,7 +268,7 @@ def make_decision_and_execute():
 
 if __name__ == "__main__":
     make_decision_and_execute()
-    schedule.every().minute.do(make_decision_and_execute)
+    schedule.every().hour.at(":01").do(make_decision_and_execute)
 
     while True:
         schedule.run_pending()
