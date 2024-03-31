@@ -9,11 +9,11 @@
 ## 전략 소개
 ### 1.autotrade.py, instruction.md
 - 데이터: 일(30일), 시간(24시간) OHLCV, Moving Averages, RSI, Stochastic Oscillator, MACD, Bollinger Bands, Orderbook Data
-- 전략: 전량 매수/매도
+- 전략: 1시간에 한번 판단하여 전량 매수/매도 or 홀드
 
 ### 2.autotrade_v2.py, instruction_v2.md
 - 데이터: 일(30일), 시간(24시간) OHLCV, Moving Averages, RSI, Stochastic Oscillator, MACD, Bollinger Bands, Orderbook Data, 최신 뉴스 데이터(SerpApi), 공포/탐욕 지수
-- 전략: 부분 매수/매도, 투자 데이터 기록하고 AI 재귀 개선
+- 전략:  8시간에 한번 판단하여 부분 매수/매도 or 홀드, 투자 데이터 기록하고 AI 재귀 개선
 
 ## 로컬 환경 설정
 ```

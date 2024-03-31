@@ -290,7 +290,15 @@ def make_decision_and_execute():
 if __name__ == "__main__":
     initialize_db()
     make_decision_and_execute()
-    schedule.every(8).hours.at(":01").do(make_decision_and_execute)
+    
+    # Schedule the task to run at 00:01
+    schedule.every().day.at("00:01").do(make_decision_and_execute)
+
+    # Schedule the task to run at 08:01
+    schedule.every().day.at("08:01").do(make_decision_and_execute)
+
+    # Schedule the task to run at 16:01
+    schedule.every().day.at("16:01").do(make_decision_and_execute)
 
     while True:
         schedule.run_pending()
