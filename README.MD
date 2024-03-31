@@ -2,8 +2,18 @@
 - GPT API를 활용하여 투자를 자동화 합니다. by 유튜버 조코딩
 ## 관련 링크
 - [수업 자료](https://jocoding.net/bitcoin)
-- [라이브 풀버전 링크(멤버십 전용)](https://youtube.com/live/-7IVgjUw79s?feature=share)
+- [1편 - 라이브 풀버전 링크(멤버십 전용)](https://youtube.com/live/-7IVgjUw79s?feature=share)
+- [2편 - 라이브 풀버전 링크(멤버십 전용)](https://youtube.com/live/GhZenus5rww?feature=share)
 - 편집본 (업데이트 예정)
+
+## 전략 소개
+### 1.autotrade.py, instruction.md
+- 데이터: 일(30일), 시간(24시간) OHLCV, Moving Averages, RSI, Stochastic Oscillator, MACD, Bollinger Bands, Orderbook Data
+- 전략: 전량 매수/매도
+
+### 2.autotrade_v2.py, instruction_v2.md
+- 데이터: 일(30일), 시간(24시간) OHLCV, Moving Averages, RSI, Stochastic Oscillator, MACD, Bollinger Bands, Orderbook Data, 최신 뉴스 데이터(SerpApi), 공포/탐욕 지수
+- 전략: 부분 매수/매도, 투자 데이터 기록하고 AI 재귀 개선
 
 ## 로컬 환경 설정
 ```
