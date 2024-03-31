@@ -5,4 +5,3 @@ pyjwt
 pandas
 pandas_ta
 schedule
-sqlite3

@@ -269,23 +269,23 @@ def make_decision_and_execute():
         advice = analyze_data_with_gpt4(news_data, data_json, last_decisions, fear_and_greed, current_status)
     except Exception as e:
             print(f"Error: {e}")
-
-    try:
-        decision = json.loads(advice)
-    except json.JSONDecodeError as e:
-        print(f"JSON parsing failed: {e}")
     else:
         try:
-            percentage = decision.get('percentage', 100)
+            decision = json.loads(advice)
+        except json.JSONDecodeError as e:
+            print(f"JSON parsing failed: {e}")
+        else:
+            try:
+                percentage = decision.get('percentage', 100)
 
-            if decision.get('decision') == "buy":
-                execute_buy(percentage)
-            elif decision.get('decision') == "sell":
-                execute_sell(percentage)
-            
-            save_decision_to_db(decision, current_status)
-        except Exception as e:
-            print(f"Failed to execute the decision or save to DB: {e}")
+                if decision.get('decision') == "buy":
+                    execute_buy(percentage)
+                elif decision.get('decision') == "sell":
+                    execute_sell(percentage)
+                
+                save_decision_to_db(decision, current_status)
+            except Exception as e:
+                print(f"Failed to execute the decision or save to DB: {e}")
 
 if __name__ == "__main__":
     initialize_db()
