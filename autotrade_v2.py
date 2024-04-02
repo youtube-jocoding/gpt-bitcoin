@@ -22,7 +22,7 @@ def initialize_db(db_path='trading_decisions.sqlite'):
         cursor.execute('''
             CREATE TABLE IF NOT EXISTS decisions (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
-                timestamp DATETIME DEFAULT CURRENT_TIMESTAMP,
+                timestamp DATETIME,
                 decision TEXT,
                 percentage REAL,
                 reason TEXT,
@@ -53,8 +53,8 @@ def save_decision_to_db(decision, current_status):
         
         # Inserting data into the database
         cursor.execute('''
-            INSERT INTO decisions (decision, percentage, reason, btc_balance, krw_balance, btc_avg_buy_price)
-            VALUES (?, ?, ?, ?, ?, ?)
+            INSERT INTO decisions (timestamp, decision, percentage, reason, btc_balance, krw_balance, btc_avg_buy_price)
+            VALUES (datetime('now', 'localtime'), ?, ?, ?, ?, ?, ?)
         ''', data_to_insert)
     
         conn.commit()
@@ -273,14 +273,24 @@ def make_decision_and_execute():
         last_decisions = fetch_last_decisions()
         fear_and_greed = fetch_fear_and_greed_index(limit=30)
         current_status = get_current_status()
-        advice = analyze_data_with_gpt4(news_data, data_json, last_decisions, fear_and_greed, current_status)
     except Exception as e:
-            print(f"Error: {e}")
+        print(f"Error: {e}")
     else:
-        try:
-            decision = json.loads(advice)
-        except json.JSONDecodeError as e:
-            print(f"JSON parsing failed: {e}")
+        max_retries = 5
+        retry_delay_seconds = 5
+        decision = None
+        for attempt in range(max_retries):
+            try:
+                advice = analyze_data_with_gpt4(news_data, data_json, last_decisions, fear_and_greed, current_status)
+                decision = json.loads(advice)
+                break
+            except json.JSONDecodeError as e:
+                print(f"JSON parsing failed: {e}. Retrying in {retry_delay_seconds} seconds...")
+                time.sleep(retry_delay_seconds)
+                print(f"Attempt {attempt + 2} of {max_retries}")
+        if not decision:
+            print("Failed to make a decision after maximum retries.")
+            return
         else:
             try:
                 percentage = decision.get('percentage', 100)
@@ -296,8 +306,9 @@ def make_decision_and_execute():
 
 if __name__ == "__main__":
     initialize_db()
-    make_decision_and_execute()
-    
+    #testing
+    # schedule.every().minute.do(make_decision_and_execute)
+
     # Schedule the task to run at 00:01
     schedule.every().day.at("00:01").do(make_decision_and_execute)
 
