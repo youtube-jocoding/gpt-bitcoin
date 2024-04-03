@@ -4,7 +4,6 @@ import pandas as pd
 from datetime import datetime
 import pyupbit
 
-@st.cache_data
 def load_data():
     db_path = 'trading_decisions.sqlite'
     with sqlite3.connect(db_path) as conn:
