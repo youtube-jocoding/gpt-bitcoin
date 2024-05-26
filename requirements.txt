@@ -6,3 +6,4 @@ pandas
 pandas_ta
 schedule
 streamlit
+selenium

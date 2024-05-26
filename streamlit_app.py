@@ -20,7 +20,7 @@ def main():
     st.write("---")
     df = load_data()
     if not df.empty:
-        start_value = 1000000
+        start_value = 2000000
         current_price = pyupbit.get_orderbook(ticker="KRW-BTC")['orderbook_units'][0]["ask_price"]
         latest_row = df.iloc[-1]
         btc_balance = latest_row['btc_balance']
@@ -28,7 +28,7 @@ def main():
         btc_avg_buy_price = latest_row['btc_avg_buy_price']
         current_value = int(btc_balance * current_price + krw_balance)
 
-        time_diff = datetime.now() - pd.to_datetime(latest_row['timestamp'])
+        time_diff = datetime.now() - pd.to_datetime(df.iloc[0]['timestamp'])
         days = time_diff.days
         hours = time_diff.seconds // 3600
         minutes = (time_diff.seconds % 3600) // 60
