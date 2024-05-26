@@ -12,6 +12,7 @@ import requests
 from datetime import datetime
 import sqlite3
 from selenium import webdriver
+from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -215,16 +216,20 @@ def fetch_fear_and_greed_index(limit=1, date_format=''):
     return resStr
 
 def get_current_base64_image():
-    # Set up Chrome options for headless mode
-    chrome_options = webdriver.ChromeOptions()
-    chrome_options.add_argument("--headless")
-    chrome_options.add_argument("--disable-gpu")
-    chrome_options.add_argument("--window-size=1920x1080")  # Adjust the window size if needed
-
-    # Initialize the WebDriver with the specified options
-    driver = webdriver.Chrome(options=chrome_options)
-
     try:
+        # Set up Chrome options for headless mode
+        chrome_options = webdriver.ChromeOptions()
+        chrome_options.add_argument("--headless")
+        chrome_options.add_argument("--no-sandbox")
+        chrome_options.add_argument("--disable-dev-shm-usage")
+        chrome_options.add_argument("--disable-gpu")
+        chrome_options.add_argument("--window-size=1920x1080")
+
+        service = Service('/usr/local/bin/chromedriver')  # Specify the path to the ChromeDriver executable
+
+        # Initialize the WebDriver with the specified options
+        driver = webdriver.Chrome(service=service, options=chrome_options)
+
         # Navigate to the desired webpage
         driver.get("https://upbit.com/full_chart?code=CRIX.UPBIT.KRW-BTC")
 
