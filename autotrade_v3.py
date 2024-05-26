@@ -216,6 +216,7 @@ def fetch_fear_and_greed_index(limit=1, date_format=''):
     return resStr
 
 def get_current_base64_image():
+    screenshot_path = "screenshot.png"
     try:
         # Set up Chrome options for headless mode
         chrome_options = webdriver.ChromeOptions()
@@ -259,7 +260,6 @@ def get_current_base64_image():
         macd_indicator.click()
 
         # Take a screenshot to verify the actions
-        screenshot_path = "screenshot.png"
         driver.save_screenshot(screenshot_path)
     except Exception as e:
         print(f"Error making current image: {e}")
