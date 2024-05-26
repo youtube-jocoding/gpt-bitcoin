@@ -6,6 +6,7 @@
 - [1편 - 라이브 풀버전 링크(멤버십 전용)](https://youtube.com/live/-7IVgjUw79s?feature=share)
 - [2편 - 라이브 풀버전 링크(멤버십 전용)](https://youtube.com/live/GhZenus5rww?feature=share)
 - [3편 - 라이브 풀버전 링크(멤버십 전용)](https://youtube.com/live/ORo8QAn-g74?feature=share)
+- [4편 - 라이브 풀버전 링크(멤버십 전용)](https://youtube.com/live/mUTGW4MhL-8?feature=share)
 - 편집본 (업데이트 예정)
 
 ## 전략 소개
@@ -15,6 +16,11 @@
 
 ### 2.autotrade_v2.py, instruction_v2.md
 - 데이터: 일(30일), 시간(24시간) OHLCV, Moving Averages, RSI, Stochastic Oscillator, MACD, Bollinger Bands, Orderbook Data, 최신 뉴스 데이터(SerpApi), 공포/탐욕 지수
+- 전략:  8시간에 한번 판단하여 부분 매수/매도 or 홀드, 투자 데이터 기록하고 AI 재귀 개선
+- 뉴스 데이터 조회를 위한 [SerpApi](https://serpapi.com/) 가입 및 API KEY 등록 필요
+
+### 3.autotrade_v3.py, instruction_v3.md
+- 데이터: 일(30일), 시간(24시간) OHLCV, Moving Averages, RSI, Stochastic Oscillator, MACD, Bollinger Bands, Orderbook Data, 최신 뉴스 데이터(SerpApi), 공포/탐욕 지수, 차트 이미지(GPT-4o 활용)
 - 전략:  8시간에 한번 판단하여 부분 매수/매도 or 홀드, 투자 데이터 기록하고 AI 재귀 개선
 - 뉴스 데이터 조회를 위한 [SerpApi](https://serpapi.com/) 가입 및 API KEY 등록 필요
 
