@@ -7,7 +7,8 @@
 - [2편 - 라이브 풀버전 링크(멤버십 전용)](https://youtube.com/live/GhZenus5rww?feature=share)
 - [3편 - 라이브 풀버전 링크(멤버십 전용)](https://youtube.com/live/ORo8QAn-g74?feature=share)
 - [4편 - 라이브 풀버전 링크(멤버십 전용)](https://youtube.com/live/mUTGW4MhL-8?feature=share)
-- 편집본 (업데이트 예정)
+
+- [(재촬영 편집본) GPT에게 맡기는 AI 비트코인 투자 자동화](https://www.youtube.com/playlist?list=PLU9-uwewPMe0LLUQrBm9vfS62Jkju_rpU)
 
 ## 전략 소개
 ### 1.autotrade.py, instruction.md
